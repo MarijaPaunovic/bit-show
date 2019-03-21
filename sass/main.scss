@@ -54,15 +54,27 @@ main {
     width: 100%;
     margin: 15px;
     cursor: pointer;
-    // &:hover {
-    //     background-color: rgba(52, 58, 64, 0.25);
-    // }
+    
     img {
         width: 100%;
     }
     h6 {
+        display: inline-block;
+        float: left;
         color: rgb(20, 157, 255);
         padding-top: 10px; 
+    }
+    p {
+        display: inline-block;
+        float: right;
+        font-size: 1rem;
+        color: rgb(20, 157, 255);
+        padding-top: 10px; 
+    }
+}
+.bg-white {
+   &:hover {
+        background-color: rgba(52, 58, 64, 0.25)!important;;
     }
 }
 .mb-5, .my-5 {

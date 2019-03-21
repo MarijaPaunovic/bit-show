@@ -21,7 +21,8 @@
                     <p class="navbar-brand"><a href='index.html'>BitShow</a></p>
                 </div>
                 <form class="form-inline">
-                    <input id='search_box' list="search_list" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <input id='search_box' list="search_list" class="form-control mr-sm-2" type="search"
+                        placeholder="Search" aria-label="Search">
                     <datalist id="search_list"></datalist>
                 </form>
 
@@ -69,10 +70,10 @@
     <script src="./js/ui.js"></script>
     <script src="./js/controller.js"></script>
     <script>
-        $(document).ready(controller.init);
-        // $(function () {
-        //     controller.initHomepage()
-        // })
+        // $(document).ready(controller.init);
+        $(function () {
+            controller.init()
+        })
     </script>
 </body>
 

@@ -48,8 +48,19 @@ main {
   .contImg img {
     width: 100%; }
   .contImg h6 {
+    display: inline-block;
+    float: left;
     color: #149dff;
     padding-top: 10px; }
+  .contImg p {
+    display: inline-block;
+    float: right;
+    font-size: 1rem;
+    color: #149dff;
+    padding-top: 10px; }
+
+.bg-white:hover {
+  background-color: rgba(52, 58, 64, 0.25) !important; }
 
 .mb-5, .my-5 {
   margin-bottom: 0 !important; }
