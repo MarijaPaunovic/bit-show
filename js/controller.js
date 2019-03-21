@@ -1,4 +1,3 @@
-
 const controller = ((data, ui) => {
 
     function init() {
@@ -12,56 +11,20 @@ const controller = ((data, ui) => {
         })
     }
 
+    // const initSinglePage = () => {
+    //     const id = localStorage.getItem('data-post-id');
+    //     const singlePageURL = `http://api.tvmaze.com/shows/${id}?embed[]=episodes&embed[]=cast`;
+
+    //     $.get(singlePageURL, function (response) {
+    //         const singleShow = data.createSingleShow(response);
+    //         ui.displaySingleShow(singleShow);
+    //     });
+    // };
+
+
+
     return {
         init
     }
 
 })(dataModule, uiModule)
-
-
-
-/////////////////////////////////
-
-// 1
-// const controller = (() => {
-
-//     const onResponse = (responseData) => {
-//         uiModule.displayShows(responseData);
-//     };
-
-//     const initHomepage = () => {
-//         dataModule.fetchShows(onResponse);
-//     }
-
-//     const initSingleShowPage = () => {
-//         // ...
-//     }
-
-//     return {
-//         initHomepage,
-//         initSingleShowPage
-//     }
-// })()
-
-///////////////////////////////////
-
-// 2
-// const controller = (() => {
-//     const initHomepage = () => {
-//         dataModule.fetchShows((shows) => {
-//             uiModule.displayShows(shows);
-//         });
-//     }
-
-//     const initSingleShowPage = () => {
-//         // ...
-//     }
-
-//     return {
-//         initHomepage,
-//         initSingleShowPage
-//     }
-// })()
-//////////////////////////////////////
-
-

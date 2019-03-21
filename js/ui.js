@@ -17,55 +17,50 @@ const uiModule = (() => {
             divContainer.append(img, text, rating);
             container.append(divContainer);
 
-            $(divContainer).on('click', function (event) {
-                console.log($(this).attr('data-post-id'));
-                localStorage.content = $(this).attr('data-post-id');
+        $(divContainer).on('click', function (event) {
+            const id = $(this).attr('data-post-id');
+            localStorage.content = $(this).attr('data-post-id');
+            // window.location.href = './showInfoPage.html' + '?id=' + id;
             })
-
         })
-
+        
     }
 
+    // function displaySingleShow(singleShow) {
+    //     const container = $('.single-show');
+
+    //     let seasons = '<ul>';
+    //     singleShow.seasons.forEach(seasons => {
+    //         seasons += `<li>${seasons.premiereDate} - ${seasons.endDate}</li>`;
+    //     })
+    //     seasons += '<ul>';
+
+    //     let cast = '<ul>';
+    //     singleShow.cast.forEach(cast => {
+    //         cast += `<li>${cast}</li>`;
+    //     }) 
+    //     cast += '<ul>';
+
+    //     container.innerHTML = `<div>
+    //                             <h1>${singleShow.name}</h1>
+    //                                 <div class='content'>
+    //                                     <img class='poster' src='${singleShow.image}'/>
+    //                                 <div class="box">
+    //                                     <h3>Seasons (${singleShow.seasons.length})</h3>
+    //                                     ${seasons}
+    //                                     <h3>Cast</h3>
+    //                                     ${cast}
+    //                                 </div>
+    //                                 </div>
+    //                             <div class='description'>${singleShow.description}</div>
+    //                             </div>`
+
+    // }
+
     return {
-        displayShows
+        displayShows,
+        // displaySingleShow
     }
 
 })()
-
-
-////////////////////////////////
-
-// 1
-// const uiModule = (() => {
-//     const displayShows = (shows) => {
-//         const showsList = shows
-//             .slice(50)
-//             .map(show => `<p data-show-id="${show.id}">${show.name}</p>`)
-//             .join("");
-
-//         $('.shows').append(showsList);
-//     }
-
-//     return {
-//         displayShows
-//     }
-// })()
-
-////////////////////////////////
-
-// 2
-// const uiModule = (() => {
-//     const displayShows = (shows) => {
-//         const showsList = shows
-//             .slice(50)
-//             .map(show => `<p data-show-id="${show.id}">${show.name}</p>`)
-//             .join("");
-
-//         $('.shows').append(showsList);
-//     }
-
-//     return {
-//         displayShows
-//     }
-// })()
 

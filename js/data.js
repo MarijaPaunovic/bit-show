@@ -14,8 +14,6 @@ const dataModule = (() => {
         }
     }
 
-
-
     function fetchShows(onSuccess) {
 
         const showsRequestUrl = 'http://api.tvmaze.com/shows';
@@ -29,52 +27,13 @@ const dataModule = (() => {
             });
 
             onSuccess(myShows);
-
         })
-
-        // function getShowInfo () {
-
-        // }
-
-
     }
+
+   
+    
     return {
-        fetchShows
+        fetchShows        
     }
 })()
-
-
-/////////////////////////////////////
-
-// 1
-// const dataModule = (() => {
-
-//     const fetchShows = (onSuccess) => {
-//         $.get('http://api.tvmaze.com/shows', onSuccess)
-//     }
-
-//     return {
-//         fetchShows
-//     }
-// })()
-
-/////////////////////////////////////
-
-// 2
-// const dataModule = (() => {
-
-//     const fetchShows = (onSuccess) => {
-//         $.get('http://api.tvmaze.com/shows', (responseData) => {
-//             // ...
-//             // ...
-//             onSuccess(responseData);
-//         })
-//     }
-
-//     return {
-//         fetchShows
-//     }
-// })()
-
-
 
