@@ -1,39 +1,121 @@
+import Show from './entities/Show.js';
+import Season from './entities/Season.js';
+import Person from './entities/Person.js';
 
-const dataModule = (() => {
+const storage = {
+    myShows: [],
+    allShows: [],
+}
 
+const showsRequestUrl = 'http://api.tvmaze.com/shows';
 
-    class Show {
-        constructor(id, name, image, rating) {
-            this.id = id;
-            this.name = name;
-            this.image = image;
-            this.rating = rating;
-        }
-        getInfo() {
-            return `ID: ${this.id}, NAME: ${this.name}, IMAGE: ${this.image}, RATING: ${this.rating}`
-        }
-    }
+const fetchData = (onSuccess) => {
 
-    function fetchShows(onSuccess) {
+    const request = $.ajax(showsRequestUrl);
 
-        const showsRequestUrl = 'http://api.tvmaze.com/shows';
+    request.done((response) => {
+        for (let i = 0; i < response.length; i++) {
+            const element = response[i];
 
-
-        $.get(showsRequestUrl, function (responseFromApi) {
-
-            const myShows = responseFromApi.slice(0, 51).map((show) => {
-                const { id, name, image, rating } = show;
-                return new Show(id, name, image.medium, rating.average)
+            const { id, name, image, rating, summary } = element;
+            const show = new Show(id, name, image.medium, rating.average, summary);
+            storage.allShows.push(show);
+            
+            // SORT BY RATING
+            storage.allShows.sort(function (a, b) {
+                return b.rating - a.rating;
             });
+        };
 
-            onSuccess(myShows);
-        })
-    }
 
-   
+        for (let i = 0; i < 51; i++) {
+            storage.myShows.push(storage.allShows[i]);
+        }
+
+        onSuccess(storage.myShows);
+
+    });
+}
+
+const getDataItem = (searchInput, onSearch) => {
+    let searchedShows = [];
+    const showsSearchUrl = `http://api.tvmaze.com/search/shows?q=${searchInput}`;
     
-    return {
-        fetchShows        
-    }
-})()
+    const request = $.ajax(showsSearchUrl);
+   
+    request.done((response) => {
+
+        for (let i = 0; i < response.length; i++) {
+            const show = response[i].show;
+            searchedShows.push(show);
+        }
+
+        onSearch(searchedShows);
+
+    });
+};
+
+const getSingleShow = (id, onSingle) => {
+    const showsSingleUrl = `http://api.tvmaze.com/shows/${id}`;
+    
+    const request = $.ajax(showsSingleUrl);
+    
+    request.done((response) => {
+
+        const { id, name, image, rating, summary } = response;
+
+        const single = new Show(id, name, image, rating.average, summary);
+
+        onSingle(single);
+
+    });
+};
+
+const getSeasons = (id, onSeason) => {
+    const showsSeasonUrl = `http://api.tvmaze.com/shows/${id}/seasons`;
+   
+    const request = $.ajax(showsSeasonUrl);
+   
+    request.done((response) => {
+
+        const { endDate, premiereDate } = response;
+
+        let seasons = [];
+
+        for (let i = 0; i < response.length; i++) {
+            const { endDate, premiereDate } = response[i];
+            const season = new Season(premiereDate, endDate);
+            seasons.push(season);
+        }
+
+        onSeason(seasons);
+
+    });
+};
+
+const getCast = (id, onCast) => {
+    const showsCastUrl = `http://api.tvmaze.com/shows/${id}/cast`;
+    
+    const request = $.ajax(showsCastUrl);
+   
+    request.done((response) => {
+
+        let casts = [];
+
+        for (let i = 0; i < response.length; i++) {
+            casts.push(new Person(response[i].person.name));
+        }
+
+        onCast(casts);
+
+    });
+};
+
+export {
+    fetchData,
+    getDataItem,
+    getSingleShow,
+    getSeasons,
+    getCast
+}
 

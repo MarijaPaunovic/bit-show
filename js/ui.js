@@ -1,66 +1,87 @@
+const $input = $('input');
+const $ul = $('#searchUl');
+const $h1 = $('.name-show');
+const $showImg = $('#show-img');
+const $detail = $('.details');
+const $showUl = $('#show-ul');
+const $castUl = $('#cast-ul');
 
-const uiModule = (() => {
+const displayShows = (myShows) => {
+    for (let i = 0; i < myShows.length; i++) {
+        const show = myShows[i];
 
+        const $showList = $("<div>")
+                        .addClass("contImg col-3 shadow p-3 mb-5 bg-white rounded")
+                        .attr('data-id', show.id);
+        const $img = $("<img>").attr("src", show.image);
+        const $text = $('<h6>').text(show.name);
+        const $rating = $("<p>").text(show.rating);
+        $showList.append($img);
+        $showList.append($text);
+        $showList.append($rating);
 
-    function displayShows(myShows) {
-        const container = $('.show');
+        $(".show").append($showList);
+    }
+}
 
-        myShows.forEach(function (element) {
-            const divContainer = $('<div>')
-                .addClass("contImg col-3 shadow p-3 mb-5 bg-white rounded")
-                .attr('data-post-id', element.id);
+const collectInput = () => $input.val();
 
-            const img = $('<img src>').attr('src', element.image);
-            const text = $('<h6>').text(element.name);
-            const rating = $('<p>').text(element.rating);
+const displaySearch = (searchedShows) => {
+    $ul.empty();
 
-            divContainer.append(img, text, rating);
-            container.append(divContainer);
+    for (let i = 0; i < searchedShows.length; i++) {
 
-        $(divContainer).on('click', function (event) {
-            const id = $(this).attr('data-post-id');
-            localStorage.content = $(this).attr('data-post-id');
-            // window.location.href = './showInfoPage.html' + '?id=' + id;
-            })
-        })
-        
+        const $li = $('<li>');
+        $li.addClass('navLi list-group-item');
+        $li.attr('data-id', searchedShows[i].id);
+        $li.text(searchedShows[i].name);
+        $ul.append($li);
+
+    }
+}
+
+const displaySingle = (data) => {
+
+    $h1.text(data.name);
+    $showImg.attr('src', data.image.medium);
+    const detailP = data.summary;
+    $detail.append(detailP);
+}
+
+const displaySeason = (data) => {
+
+    for (let i = 0; i < data.length; i++) {
+
+        const $showLi = $("<li>").addClass("list-group-item");
+        $showLi.html(`<span class='season-span'>Premier:</span> ${data[i].premiereDate} - <span class='season-span'>End:</span> ${data[i].endDate}`)
+        $showUl.append($showLi);
     }
 
-    // function displaySingleShow(singleShow) {
-    //     const container = $('.single-show');
+}
 
-    //     let seasons = '<ul>';
-    //     singleShow.seasons.forEach(seasons => {
-    //         seasons += `<li>${seasons.premiereDate} - ${seasons.endDate}</li>`;
-    //     })
-    //     seasons += '<ul>';
+const displayCasts = (data) => {
+    if (data.length < 5) {
+        for (let i = 0; i < data.length; i++) {
 
-    //     let cast = '<ul>';
-    //     singleShow.cast.forEach(cast => {
-    //         cast += `<li>${cast}</li>`;
-    //     }) 
-    //     cast += '<ul>';
+            const $castLi = $("<li>").addClass("list-group-item");
+            $castLi.text(data[i].name);
+            $castUl.append($castLi);
+        }
+    } else {
+        for (let i = 0; i < 5; i++) {
 
-    //     container.innerHTML = `<div>
-    //                             <h1>${singleShow.name}</h1>
-    //                                 <div class='content'>
-    //                                     <img class='poster' src='${singleShow.image}'/>
-    //                                 <div class="box">
-    //                                     <h3>Seasons (${singleShow.seasons.length})</h3>
-    //                                     ${seasons}
-    //                                     <h3>Cast</h3>
-    //                                     ${cast}
-    //                                 </div>
-    //                                 </div>
-    //                             <div class='description'>${singleShow.description}</div>
-    //                             </div>`
-
-    // }
-
-    return {
-        displayShows,
-        // displaySingleShow
+            const $castLi = $("<li>").addClass("list-group-item");
+            $castLi.text(data[i].name);
+            $castUl.append($castLi);
+        }
     }
+}
 
-})()
-
+export {
+    displayShows,
+    collectInput,
+    displaySearch,
+    displaySingle,
+    displaySeason,
+    displayCasts
+}

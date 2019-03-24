@@ -18,8 +18,9 @@
         <div class="container">
             <nav class="navbar-dark bg-dark row justify-content-md-center">
                 <div class="col-8 col-md- col-lg- ">
-                    <p class="navbar-brand"><a href='index.html'>BitShow</a></p>
+                    <p class="navbar-brand"><a href='./index.html'>BitShow</a></p>
                 </div>
+                <!------ Search ------>
                 <form class="form-inline">
                     <input id='search_box' list="search_list" class="form-control mr-sm-2" type="search"
                         placeholder="Search" aria-label="Search">
@@ -28,6 +29,9 @@
 
             </nav>
         </div>
+
+        <ul class="d-none list-group" id="searchUl"></ul>
+
     </header>
 
     <!-------- MAIN BODY------>
@@ -39,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="show row justify-content-md-center">
+            <div class="wrapper show-list show  row justify-content-md-center">
 
             </div>
 
@@ -50,11 +54,10 @@
     <footer>
         <div class="container">
             <small class="row align-items-center">
-                <p class="col-12">Copyright &copy; Bit Student 2019</p>
+                <p class="col-12">Copyright &copy; 2019 Bit Student - Marija Paunović</p>
             </small>
         </div>
     </footer>
-
 
 
 
@@ -66,7 +69,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="./js/data.js"></script>
+
+<!--------- ES5 ----------->
+    <!-- <script src="./js/data.js"></script>
     <script src="./js/ui.js"></script>
     <script src="./js/controller.js"></script>
     <script>
@@ -74,7 +79,14 @@
         $(function () {
             controller.init()
         })
-    </script>
-</body>
+    </script> -->
 
+<!--------- ES6 ----------->
+<script type="module">
+    import { initIndex } from './js/controller.js';
+    $(initIndex);
+</script>
+
+
+</body>
 </html>
