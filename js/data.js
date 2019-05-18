@@ -7,7 +7,7 @@ const storage = {
     allShows: [],
 }
 
-const showsRequestUrl = 'http://api.tvmaze.com/shows';
+const showsRequestUrl = 'https://api.tvmaze.com/shows';
 
 const fetchData = (onSuccess) => {
 
@@ -39,7 +39,7 @@ const fetchData = (onSuccess) => {
 
 const getDataItem = (searchInput, onSearch) => {
     let searchedShows = [];
-    const showsSearchUrl = `http://api.tvmaze.com/search/shows?q=${searchInput}`;
+    const showsSearchUrl = `https://api.tvmaze.com/search/shows?q=${searchInput}`;
     
     const request = $.ajax(showsSearchUrl);
    
@@ -56,7 +56,7 @@ const getDataItem = (searchInput, onSearch) => {
 };
 
 const getSingleShow = (id, onSingle) => {
-    const showsSingleUrl = `http://api.tvmaze.com/shows/${id}`;
+    const showsSingleUrl = `https://api.tvmaze.com/shows/${id}`;
     
     const request = $.ajax(showsSingleUrl);
     
@@ -72,7 +72,7 @@ const getSingleShow = (id, onSingle) => {
 };
 
 const getSeasons = (id, onSeason) => {
-    const showsSeasonUrl = `http://api.tvmaze.com/shows/${id}/seasons`;
+    const showsSeasonUrl = `https://api.tvmaze.com/shows/${id}/seasons`;
    
     const request = $.ajax(showsSeasonUrl);
    
@@ -94,7 +94,7 @@ const getSeasons = (id, onSeason) => {
 };
 
 const getCast = (id, onCast) => {
-    const showsCastUrl = `http://api.tvmaze.com/shows/${id}/cast`;
+    const showsCastUrl = `https://api.tvmaze.com/shows/${id}/cast`;
     
     const request = $.ajax(showsCastUrl);
    
