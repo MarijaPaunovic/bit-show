@@ -1,4 +1,4 @@
-# BitShow PROJECT
+# Bit Show Project
 
 To see project, please go to link: https://marija-paunovic-bitshow.netlify.com/
 
