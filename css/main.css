@@ -105,6 +105,9 @@ main {
 .navLi {
   cursor: pointer; }
 
+.list-group-item {
+  color: black; }
+
 footer {
   background-color: #3a3b3d;
   color: white;
